@@ -23,8 +23,12 @@ public class CodeBuilder {
      */
     public String build() {
         StringBuilder classString = new StringBuilder();
-        if ( className.isEmpty() == false )
+        if ( className.isEmpty() == false ) {
             classString.append("public class " + className);
+            classString.append(" { ");
+        }
+
+        classString.append("}");
 
         return classString.toString();
     }

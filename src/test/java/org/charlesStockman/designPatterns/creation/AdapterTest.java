@@ -17,14 +17,16 @@ public class AdapterTest {
     }
 
     /**
-     * Test to verify the creation of a instance of class CodeBuilder with a valid parameter
+     * Test to verify the creation of an instance of class CodeBuilder with a valid parameter
      */
     @Test
-    public void AdapterTestClassWithClassName() {
-        String answer = "public class " + className;
+    public void AdapterTestCreationClassWithClassName() {
+        String answer = String.format("public class %s { }", className) ;
         CodeBuilder codeBuilder = new CodeBuilder(className);
         Assert.assertEquals(answer, codeBuilder.build());
     }
+
+
 
 
 }
