@@ -1,5 +1,7 @@
 package org.charlesStockman.designPatterns.creation;
 
+import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -7,11 +9,23 @@ import org.junit.Test;
  */
 public class AdapterTest {
 
+    private String className;
+
+    @Before
+    public void setup() {
+        StringBuilder classAsText = new StringBuilder("");
+        className = "TestClass";
+    }
+
     /**
-     * Test to verify the instance of class CodeBuilder can be created
+     * Test to verify the creation of a instance of class CodeBuilder with a valid parameter
      */
     @Test
-    public void AdapterTestClass() {
-        CodeBuilder codeBuilder;
+    public void AdapterTestClassWithClassName() {
+        String answer = "public class " + className;
+        CodeBuilder codeBuilder = new CodeBuilder(className);
+        Assert.assertSame(answer, codeBuilder.build());
     }
+
+
 }
