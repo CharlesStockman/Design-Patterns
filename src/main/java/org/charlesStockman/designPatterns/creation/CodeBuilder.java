@@ -19,10 +19,19 @@ public class CodeBuilder {
     }
 
     /**
-     * Creates a valid Java class as a String
+     * Creates a valid Java class blueprint as a String
+     *
+     * @exception   IllegalArgumentException    The classname is either null or empty.
      */
     public String build() {
         StringBuilder classString = new StringBuilder();
+
+        // Verify that the classname is not null or contain only whitespace
+        if ( className == null || className.isEmpty() ) {
+            throw new IllegalArgumentException("parameter classname is either null or contaiuns whitespace only");
+        }
+
+        // Build the class
         if ( className.isEmpty() == false ) {
             classString.append("public class " + className);
             classString.append(" { ");
