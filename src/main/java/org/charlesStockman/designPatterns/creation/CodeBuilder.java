@@ -43,7 +43,7 @@ public class CodeBuilder {
             String typeValue = tuple.get(TYPE_INDEX);
             String typeName  = tuple.get(NAME_INDEX);
 
-            if ( typeValue == null || typeName == null )
+            if ( typeValue == null || typeName == null || typeValue.isBlank() || typeName.isBlank() )
                 throw new IllegalArgumentException("parameter for the type or field name cannot be null");
         }
 

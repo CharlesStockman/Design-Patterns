@@ -108,8 +108,4 @@ public class AdapterTest {
         codeBuilder.addField(variable1Type, variable1Name);
         codeBuilder.build();
     }
-
-
-
-
 }
