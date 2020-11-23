@@ -26,7 +26,17 @@ public class AdapterTest {
         Assert.assertEquals(answer, codeBuilder.build());
     }
 
+    /**
+     * Test to verify the creation of CodeBuilder with a parameter name is null
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void AdapterTestCreationWithClassNameNull() {
+        className = null;
+        CodeBuilder codeBuilder = new CodeBuilder(className);
+        codeBuilder.build();
 
-
-
+        className = null;
+        CodeBuilder codeBuilder2 = new CodeBuilder(className);
+        codeBuilder2.build();
+    }
 }
