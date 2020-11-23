@@ -1,5 +1,8 @@
 package org.charlesStockman.designPatterns.creation;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Provide an implementation of the Builder Pattern
  *
@@ -8,6 +11,10 @@ package org.charlesStockman.designPatterns.creation;
 public class CodeBuilder {
 
     private final String className;
+    private final List<List> memberVariablesDescriptions;
+
+    public static final int TYPE_INDEX = 0;
+    public static final int NAME_INDEX = 1;
 
     /**
      * Create an instance of CodeBuilder
@@ -16,6 +23,7 @@ public class CodeBuilder {
      */
     public CodeBuilder(String className) {
         this.className = className;
+        this.memberVariablesDescriptions = new ArrayList<>();
     }
 
     /**
@@ -35,10 +43,26 @@ public class CodeBuilder {
         if ( className.isEmpty() == false ) {
             classString.append("public class " + className);
             classString.append(" { ");
+
+            for ( List<String> tuple : memberVariablesDescriptions) {
+                classString.append(String.format("private %s %s; ", tuple.get(TYPE_INDEX), tuple.get(NAME_INDEX)));
+            }
         }
 
         classString.append("}");
 
         return classString.toString();
+    }
+
+    /**
+     * Creates add a public member barible ( type and name ) to the builder
+     */
+    public void addField(String type, String name ) {
+
+        ArrayList tuple = new ArrayList<String>();
+        tuple.add(0, type);
+        tuple.add(1, name);
+
+        memberVariablesDescriptions.add(tuple);
     }
 }

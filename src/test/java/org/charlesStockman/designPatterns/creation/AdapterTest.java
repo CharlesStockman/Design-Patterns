@@ -17,8 +17,8 @@ public class AdapterTest {
     public void setup() {
         className = "TestClass";
 
-        String variable1Type = "String";
-        String variable11Name = "name";
+        variable1Type = "String";
+        variable1Name = "name";
     }
 
     /**
@@ -51,11 +51,12 @@ public class AdapterTest {
      */
     @Test
     public void adapterTestAddField() {
-        String answer = String.format("public class %s { public %s %s; }", className, variable1Type, variable1Name) ;
+        String answer = String.format("public class %s { private %s %s; }", className, variable1Type, variable1Name) ;
         CodeBuilder codeBuilder = new CodeBuilder(className);
+        codeBuilder.addField(variable1Type, variable1Name);
+
         String result = codeBuilder.build();
-
         Assert.assertEquals(answer, result);
-
+        Assert.assertTrue(result.contains(variable1Name));
     }
 }
