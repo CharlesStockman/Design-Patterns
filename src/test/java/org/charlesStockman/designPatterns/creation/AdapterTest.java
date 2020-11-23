@@ -66,18 +66,24 @@ public class AdapterTest {
     }
 
     /**
-     * Test to verify the creation of CodeBuilder with a parameter name is null
+     * Test to verify the type field cannot be null when building the class
      */
-//    @Test(expected = IllegalArgumentException.class)
-//    public void AdapterBuildFieldWithClassNameNull() {
-//        className = null;
-//        CodeBuilder codeBuilder = new CodeBuilder(className);
-//        codeBuilder.build();
-//
-//        className = "  ";
-//        CodeBuilder codeBuilder2 = new CodeBuilder(className);
-//        codeBuilder2.build();
-//    }
+    @Test(expected = IllegalArgumentException.class)
+    public void AdapterBuildFieldWithClassFieldTypeNull() {
+        variable1Type = null;
+        CodeBuilder codeBuilder = new CodeBuilder(className);
+        codeBuilder.addField(variable1Type, variable1Name);
+        codeBuilder.build();
+    }
 
-
+    /**
+     * Test to verify the type field cannot be null when building the class
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void AdapterBuildFieldWithClassFieldNameNull() {
+        variable1Name = null;
+        CodeBuilder codeBuilder = new CodeBuilder(className);
+        codeBuilder.addField(variable1Type, variable1Name);
+        codeBuilder.build();
+    }
 }
