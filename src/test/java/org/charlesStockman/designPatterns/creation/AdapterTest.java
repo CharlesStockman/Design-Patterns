@@ -3,7 +3,7 @@ package org.charlesStockman.designPatterns.creation;
 import org.junit.Test;
 
 /**
- * Test written to help the developer understand the adapter class
+ * Test written to help the developer understand the adapter design pattern
  */
 public class AdapterTest {
 
