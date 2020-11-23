@@ -35,20 +35,15 @@ public class CodeBuilder {
         StringBuilder classString = new StringBuilder();
 
         // Verify that the classname is not null or contain only whitespace
-        if ( className == null || className.isEmpty() ) {
+        if ( className == null || className.isBlank() ) {
             throw new IllegalArgumentException("parameter classname is either null or contaiuns whitespace only");
         }
 
         // Build the class
-        if ( className.isEmpty() == false ) {
-            classString.append("public class " + className);
-            classString.append(" { ");
-
-            for ( List<String> tuple : memberVariablesDescriptions) {
-                classString.append(String.format("private %s %s; ", tuple.get(TYPE_INDEX), tuple.get(NAME_INDEX)));
-            }
-        }
-
+        classString.append("public class " + className);
+        classString.append(" { ");
+        for ( List<String> tuple : memberVariablesDescriptions)
+            classString.append(String.format("private %s %s; ", tuple.get(TYPE_INDEX), tuple.get(NAME_INDEX)));
         classString.append("}");
 
         return classString.toString();

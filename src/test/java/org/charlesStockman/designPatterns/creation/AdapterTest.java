@@ -39,15 +39,20 @@ public class AdapterTest {
         className = null;
         CodeBuilder codeBuilder = new CodeBuilder(className);
         codeBuilder.build();
+    }
 
-        className = null;
+    /**
+     * Test to verify the creation of CodeBuilder with a parameter is spaces
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void AdapterTestCreationWithClassNameWhiteSpace() {
+        className = "   ";
         CodeBuilder codeBuilder2 = new CodeBuilder(className);
         codeBuilder2.build();
     }
 
     /**
-     * Test to verify the addField can accept and store a Class/Primitive and the variable name and allow the developer
-     * to chain functions
+     * Test to verify the addField can accept and store a Class/Primitive.
      */
     @Test
     public void adapterTestAddField() {
@@ -59,4 +64,20 @@ public class AdapterTest {
         Assert.assertEquals(answer, result);
         Assert.assertTrue(result.contains(variable1Name));
     }
+
+    /**
+     * Test to verify the creation of CodeBuilder with a parameter name is null
+     */
+//    @Test(expected = IllegalArgumentException.class)
+//    public void AdapterBuildFieldWithClassNameNull() {
+//        className = null;
+//        CodeBuilder codeBuilder = new CodeBuilder(className);
+//        codeBuilder.build();
+//
+//        className = "  ";
+//        CodeBuilder codeBuilder2 = new CodeBuilder(className);
+//        codeBuilder2.build();
+//    }
+
+
 }
