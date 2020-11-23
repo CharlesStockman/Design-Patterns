@@ -91,8 +91,8 @@ public class AdapterTest {
      * Test to verify the type field cannot be null when building the class
      */
     @Test(expected = IllegalArgumentException.class)
-    public void AdapterBuildFieldWithClassFieldTypeNull() {
-        variable1Type = null;
+    public void AdapterBuildFieldWithClassFieldTypeBlank() {
+        variable1Type = "  ";
         CodeBuilder codeBuilder = new CodeBuilder(className);
         codeBuilder.addField(variable1Type, variable1Name);
         codeBuilder.build();
@@ -102,12 +102,14 @@ public class AdapterTest {
      * Test to verify the type field cannot be null when building the class
      */
     @Test(expected = IllegalArgumentException.class)
-    public void AdapterBuildFieldWithClassFieldNameNull() {
-        variable1Name = null;
+    public void AdapterBuildFieldWithClassFieldNameBlank() {
+        variable1Name = "    ";
         CodeBuilder codeBuilder = new CodeBuilder(className);
         codeBuilder.addField(variable1Type, variable1Name);
         codeBuilder.build();
     }
+
+
 
 
 }
