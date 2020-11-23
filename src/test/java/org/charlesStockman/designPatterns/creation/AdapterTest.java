@@ -13,7 +13,6 @@ public class AdapterTest {
 
     @Before
     public void setup() {
-        StringBuilder classAsText = new StringBuilder("");
         className = "TestClass";
     }
 
@@ -24,7 +23,7 @@ public class AdapterTest {
     public void AdapterTestClassWithClassName() {
         String answer = "public class " + className;
         CodeBuilder codeBuilder = new CodeBuilder(className);
-        Assert.assertSame(answer, codeBuilder.build());
+        Assert.assertEquals(answer, codeBuilder.build());
     }
 
 
