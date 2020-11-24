@@ -8,7 +8,7 @@ import java.util.List;
  *
  * Generates a String that contain a valid class with a class name and fields.
  */
-public class CodeBuilder {
+public class BuilderCode {
 
     private final String className;
     private final List<List> memberVariablesDescriptions;
@@ -17,11 +17,11 @@ public class CodeBuilder {
     public static final int NAME_INDEX = 1;
 
     /**
-     * Create an instance of CodeBuilder
+     * Create an instance of BuilderCode
      *
      * @param   className  The class name.
      */
-    public CodeBuilder(String className) {
+    public BuilderCode(String className) {
         this.className = className;
         this.memberVariablesDescriptions = new ArrayList<>();
     }
@@ -62,7 +62,7 @@ public class CodeBuilder {
      *
      * @return The current object ( this ) return to facilitate chaining.
      */
-    public CodeBuilder addField(String type, String name ) {
+    public BuilderCode addField(String type, String name ) {
 
         ArrayList tuple = new ArrayList<String>();
         tuple.add(0, type);

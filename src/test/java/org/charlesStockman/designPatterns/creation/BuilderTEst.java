@@ -7,7 +7,7 @@ import org.junit.Test;
 /**
  * Test written to help the developer understand the adapter design pattern
  */
-public class AdapterTest {
+public class BuilderTEst {
 
     private String className;
     private String variable1Type;
@@ -28,33 +28,33 @@ public class AdapterTest {
     }
 
     /**
-     * Test to verify the creation of an instance of class CodeBuilder with a valid parameter
+     * Test to verify the creation of an instance of class BuilderCode with a valid parameter
      */
     @Test
     public void AdapterTestCreationClassWithClassName() {
         String answer = String.format("public class %s { }", className) ;
-        CodeBuilder codeBuilder = new CodeBuilder(className);
-        Assert.assertEquals(answer, codeBuilder.build());
+        BuilderCode builderCode = new BuilderCode(className);
+        Assert.assertEquals(answer, builderCode.build());
     }
 
     /**
-     * Test to verify the creation of CodeBuilder with a parameter name is null
+     * Test to verify the creation of BuilderCode with a parameter name is null
      */
     @Test(expected = IllegalArgumentException.class)
     public void AdapterTestCreationWithClassNameNull() {
         className = null;
-        CodeBuilder codeBuilder = new CodeBuilder(className);
-        codeBuilder.build();
+        BuilderCode builderCode = new BuilderCode(className);
+        builderCode.build();
     }
 
     /**
-     * Test to verify the creation of CodeBuilder with a parameter is spaces
+     * Test to verify the creation of BuilderCode with a parameter is spaces
      */
     @Test(expected = IllegalArgumentException.class)
     public void AdapterTestCreationWithClassNameWhiteSpace() {
         className = "   ";
-        CodeBuilder codeBuilder2 = new CodeBuilder(className);
-        codeBuilder2.build();
+        BuilderCode builderCode2 = new BuilderCode(className);
+        builderCode2.build();
     }
 
     /**
@@ -63,10 +63,10 @@ public class AdapterTest {
     @Test
     public void adapterTestAddField() {
         String answer = String.format("public class %s { private %s %s; }", className, variable1Type, variable1Name) ;
-        CodeBuilder codeBuilder = new CodeBuilder(className);
-        codeBuilder.addField(variable1Type, variable1Name);
+        BuilderCode builderCode = new BuilderCode(className);
+        builderCode.addField(variable1Type, variable1Name);
 
-        String result = codeBuilder.build();
+        String result = builderCode.build();
         Assert.assertEquals(answer, result);
         Assert.assertTrue(result.contains(variable1Name));
     }
@@ -77,9 +77,9 @@ public class AdapterTest {
     @Test(expected = IllegalArgumentException.class)
     public void AdapterBuildFieldWithClassFieldTypeNull() {
         variable1Type = null;
-        CodeBuilder codeBuilder = new CodeBuilder(className);
-        codeBuilder.addField(variable1Type, variable1Name);
-        codeBuilder.build();
+        BuilderCode builderCode = new BuilderCode(className);
+        builderCode.addField(variable1Type, variable1Name);
+        builderCode.build();
     }
 
     /**
@@ -88,9 +88,9 @@ public class AdapterTest {
     @Test(expected = IllegalArgumentException.class)
     public void AdapterBuildFieldWithClassFieldNameNull() {
         variable1Name = null;
-        CodeBuilder codeBuilder = new CodeBuilder(className);
-        codeBuilder.addField(variable1Type, variable1Name);
-        codeBuilder.build();
+        BuilderCode builderCode = new BuilderCode(className);
+        builderCode.addField(variable1Type, variable1Name);
+        builderCode.build();
     }
 
     /**
@@ -99,9 +99,9 @@ public class AdapterTest {
     @Test(expected = IllegalArgumentException.class)
     public void AdapterBuildFieldWithClassFieldTypeBlank() {
         variable1Type = "  ";
-        CodeBuilder codeBuilder = new CodeBuilder(className);
-        codeBuilder.addField(variable1Type, variable1Name);
-        codeBuilder.build();
+        BuilderCode builderCode = new BuilderCode(className);
+        builderCode.addField(variable1Type, variable1Name);
+        builderCode.build();
     }
 
     /**
@@ -110,9 +110,9 @@ public class AdapterTest {
     @Test(expected = IllegalArgumentException.class)
     public void AdapterBuildFieldWithClassFieldNameBlank() {
         variable1Name = "    ";
-        CodeBuilder codeBuilder = new CodeBuilder(className);
-        codeBuilder.addField(variable1Type, variable1Name);
-        codeBuilder.build();
+        BuilderCode builderCode = new BuilderCode(className);
+        builderCode.addField(variable1Type, variable1Name);
+        builderCode.build();
     }
 
     /**
@@ -124,7 +124,7 @@ public class AdapterTest {
     public void AdapterBuild() {
         String answer = String.format("public class %s { private %s %s; private %s %s; }",
                 className, variable1Type, variable1Name, variable2Type, variable2Name) ;
-        String result = new CodeBuilder(className).addField(variable1Type, variable1Name).addField(variable2Type, variable2Name).build();
+        String result = new BuilderCode(className).addField(variable1Type, variable1Name).addField(variable2Type, variable2Name).build();
         Assert.assertEquals(result, answer);
     }
 }
