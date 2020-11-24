@@ -7,7 +7,7 @@ import org.junit.Test;
 /**
  * Test written to help the developer understand the adapter design pattern
  */
-public class BuilderTEst {
+public class BuilderTest {
 
     private String className;
     private String variable1Type;
