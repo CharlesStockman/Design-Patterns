@@ -120,10 +120,11 @@ public class AdapterTest {
      *
      * Assumption the test for making sure the classname, type names and field name have already been completed
      */
+    @Test
     public void AdapterBuild() {
         String answer = String.format("public class %s { private %s %s; private %s %s; }",
                 className, variable1Type, variable1Name, variable2Type, variable2Name) ;
         String result = new CodeBuilder(className).addField(variable1Type, variable1Name).addField(variable2Type, variable2Name).build();
-        Assert.assertEquals(reuslt, answer);
+        Assert.assertEquals(result, answer);
     }
 }

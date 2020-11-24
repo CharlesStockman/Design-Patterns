@@ -58,14 +58,18 @@ public class CodeBuilder {
     }
 
     /**
-     * Creates add a public member barible ( type and name ) to the builder
+     * Creates add a public member variable ( type and name ) to the builder
+     *
+     * @return The current object ( this ) return to facilitate chaining.
      */
-    public void addField(String type, String name ) {
+    public CodeBuilder addField(String type, String name ) {
 
         ArrayList tuple = new ArrayList<String>();
         tuple.add(0, type);
         tuple.add(1, name);
 
         memberVariablesDescriptions.add(tuple);
+
+        return this;
     }
 }
