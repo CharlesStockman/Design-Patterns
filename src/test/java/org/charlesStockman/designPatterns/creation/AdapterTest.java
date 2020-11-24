@@ -12,6 +12,8 @@ public class AdapterTest {
     private String className;
     private String variable1Type;
     private String variable1Name;
+    private String variable2Type;
+    private String variable2Name;
 
     @Before
     public void setup() {
@@ -19,6 +21,10 @@ public class AdapterTest {
 
         variable1Type = "String";
         variable1Name = "name";
+
+        variable2Type = "Integer";
+        variable2Name = "age";
+
     }
 
     /**
@@ -107,5 +113,17 @@ public class AdapterTest {
         CodeBuilder codeBuilder = new CodeBuilder(className);
         codeBuilder.addField(variable1Type, variable1Name);
         codeBuilder.build();
+    }
+
+    /**
+     * Test to verify the type build produce correct code
+     *
+     * Assumption the test for making sure the classname, type names and field name have already been completed
+     */
+    public void AdapterBuild() {
+        String answer = String.format("public class %s { private %s %s; private %s %s; }",
+                className, variable1Type, variable1Name, variable2Type, variable2Name) ;
+        String result = new CodeBuilder(className).addField(variable1Type, variable1Name).addField(variable2Type, variable2Name).build();
+        Assert.assertEquals(reuslt, answer);
     }
 }
