@@ -1,8 +1,9 @@
 package org.charlesStockman.designPatterns.creation;
 
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test written to help the developer understand the adapter design pattern
@@ -15,7 +16,7 @@ public class BuilderTest {
     private String variable2Type;
     private String variable2Name;
 
-    @Before
+    @BeforeEach
     public void setup() {
         className = "TestClass";
 
@@ -44,21 +45,25 @@ public class BuilderTest {
     /**
      * Test to verify the creation of BuilderCode with a parameter name is null
      */
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void AdapterTestCreationWithClassNameNull() {
         className = null;
         BuilderCode builderCode = new BuilderCode(className);
-        builderCode.build();
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> builderCode.build());
+
     }
 
     /**
      * Test to verify the creation of BuilderCode with a parameter is spaces
      */
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void AdapterTestCreationWithClassNameWhiteSpace() {
         className = "   ";
-        BuilderCode builderCode2 = new BuilderCode(className);
-        builderCode2.build();
+        BuilderCode builderCode = new BuilderCode(className);
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> builderCode.build());
+
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -82,45 +87,50 @@ public class BuilderTest {
     /**
      * Test to verify the type field cannot be null when building the class
      */
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void AdapterBuildFieldWithClassFieldTypeNull() {
         variable1Type = null;
         BuilderCode builderCode = new BuilderCode(className);
         builderCode.addField(variable1Type, variable1Name);
-        builderCode.build();
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> builderCode.build());
     }
 
     /**
      * Test to verify the type field cannot be null when building the class
      */
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void AdapterBuildFieldWithClassFieldNameNull() {
         variable1Name = null;
         BuilderCode builderCode = new BuilderCode(className);
         builderCode.addField(variable1Type, variable1Name);
-        builderCode.build();
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> builderCode.build());
     }
 
     /**
      * Test to verify the type field cannot be null when building the class
      */
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void AdapterBuildFieldWithClassFieldTypeBlank() {
         variable1Type = "  ";
         BuilderCode builderCode = new BuilderCode(className);
         builderCode.addField(variable1Type, variable1Name);
-        builderCode.build();
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> builderCode.build());
     }
 
     /**
      * Test to verify the type field cannot be null when building the class
      */
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void AdapterBuildFieldWithClassFieldNameBlank() {
         variable1Name = "    ";
         BuilderCode builderCode = new BuilderCode(className);
         builderCode.addField(variable1Type, variable1Name);
-        builderCode.build();
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> builderCode.build());
+
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
