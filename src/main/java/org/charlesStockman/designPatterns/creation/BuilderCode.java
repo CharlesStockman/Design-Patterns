@@ -29,6 +29,9 @@ public class BuilderCode {
     /**
      * Creates a valid Java class blueprint as a String
      *
+     * Handle checking of all data before the string is built.  This includes the class name and the name and type
+     * of each field.
+     *
      * @exception   IllegalArgumentException    The classname is either null or empty.
      */
     public String build() {
