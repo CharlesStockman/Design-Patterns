@@ -1,5 +1,7 @@
 package org.charlesStockman.designPatterns.creation;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,15 +40,15 @@ public class BuilderCode {
         StringBuilder classString = new StringBuilder();
 
         // Verify that the classname is not null or contain only whitespace
-        if ( className == null || className.isBlank()) {
-            throw new IllegalArgumentException("parameter classname is either null or contaiuns whitespace only");
+        if ( StringUtils.isBlank(className)) {
+            throw new IllegalArgumentException("parameter classname is either null or contains whitespace only");
         }
 
         for ( List<String> tuple : memberVariablesDescriptions) {
             String typeValue = tuple.get(TYPE_INDEX);
             String typeName  = tuple.get(NAME_INDEX);
 
-            if ( typeValue == null || typeName == null || typeValue.isBlank() || typeName.isBlank() )
+            if ( StringUtils.isBlank(typeName) || StringUtils.isBlank(typeValue) )
                 throw new IllegalArgumentException("parameter for the type or field name cannot be null");
         }
 
