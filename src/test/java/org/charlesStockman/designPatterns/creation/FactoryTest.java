@@ -35,9 +35,6 @@ public class FactoryTest {
         Assertions.assertEquals(person.getName(), name);
         Assertions.assertFalse(person.isCitizen());
         Assertions.assertFalse(person.isLegal());
-
-
-
     }
 
     /**
@@ -53,7 +50,6 @@ public class FactoryTest {
 
         Assertions.assertNotNull(person);
         Assertions.assertEquals(person.getName(), name);
-
         Assertions.assertNotNull(person);
         Assertions.assertEquals(person.getName(), name);
         Assertions.assertEquals(idType, person.getIdentificationType());
@@ -63,11 +59,25 @@ public class FactoryTest {
     }
 
     /**
-     * Verifies a Person Object is valid
-     *
-     * @param person The person instance to be checked.
+     * Create a person who is a citizen
      */
-    public void validatePerson(Person person) {
+    @Test
+    public void createCitizen() {
 
+        String name                         = "Charles Stockman";
+        Person.IdentificationType idType    = Person.IdentificationType.SocialSecurity;
+        String specificId                   = "123456789";
+
+        Person person = FactoryCode.createLegalAlien(name, idType, specificId);
+
+        Assertions.assertNotNull(person);
+        Assertions.assertEquals(person.getName(), name);
+        Assertions.assertNotNull(person);
+        Assertions.assertEquals(person.getName(), name);
+        Assertions.assertEquals(idType, person.getIdentificationType());
+        Assertions.assertEquals(specificId, person.getSpecificId());
+        Assertions.assertFalse(person.isCitizen());
+        Assertions.assertTrue(person.isLegal());
     }
+
 }

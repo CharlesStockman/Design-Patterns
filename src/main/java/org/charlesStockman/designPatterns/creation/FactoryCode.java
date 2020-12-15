@@ -10,6 +10,8 @@ public class FactoryCode {
      * @param name      The name of the person
      *
      * @return An instance of <code>Person</code>
+     *
+     * @throws IllegalArgumentException if the name is not valid
      */
     public static Person createIllegal(String name) throws IllegalArgumentException {
         Person person = new Person(name);
@@ -21,9 +23,16 @@ public class FactoryCode {
      * Creates an Legal Alien
      *
      * @param name              The name of the Person
-     * @param IdType            The Type of the Id ( ex. Social Security )
+     * @param idType            The Type of the Id ( ex. Social Security )
      * @param specificId        The specific for the person.
+     *
+     * @throws IllegalArgumentException if the name or specific id is not valid.
      */
+    public static Person createLegalAlien(String name, Person.IdentificationType idType, String specificId ) {
+        Person person = new Person(name, idType, specificId);
+        person.initialize();
+        return person;
+    }
 
 
 

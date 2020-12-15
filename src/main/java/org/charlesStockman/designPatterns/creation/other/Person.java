@@ -4,6 +4,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
+import java.net.IDN;
+
 @ToString
 @EqualsAndHashCode
 
@@ -97,6 +99,12 @@ public class Person {
     public Person(String name, IdentificationType type, String IdentificationId) {
         this(name);
         this.identificationType = type;
+        this.specificId = IdentificationId;
+
+        if ( type == IdentificationType.AlienRegistration) {
+            isLegal = true;
+            isCitizen = false;
+        }
     }
 
     /**
@@ -106,7 +114,6 @@ public class Person {
      */
     public void initialize() throws IllegalArgumentException {
         validateName(this.getName());
-        validateName(getName());
         if ( identificationType != null ) validateIdentification(getSpecificId());
     }
 
@@ -145,7 +152,7 @@ public class Person {
             throw new IllegalArgumentException("data ( Identification )variable cannot be empty or null");
         }
 
-        if ( data.matches("\\D") == false ) {
+        if ( data.matches("\\d+") == false ) {
             throw new IllegalArgumentException("data ( Identification ) variable contains more characters that are not digits ");
         }
 
