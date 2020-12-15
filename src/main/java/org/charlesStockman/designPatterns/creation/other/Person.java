@@ -16,7 +16,7 @@ public class Person {
      * The enumeration describes the type of identification.  A citizen will have
      * a social security number and an alien will have a alien identification number
      */
-    enum IdentificationType {
+    public enum IdentificationType {
         SocialSecurity,
         AlienRegistration;
 
@@ -72,6 +72,7 @@ public class Person {
     /**
      * Is the person illegally in the United States
      */
+    @Getter
     boolean isLegal;
 
     /**
@@ -105,7 +106,8 @@ public class Person {
      */
     public void initialize() throws IllegalArgumentException {
         validateName(this.getName());
-        validateIdentification(getSpecificId());
+        validateName(getName());
+        if ( identificationType != null ) validateIdentification(getSpecificId());
     }
 
     /**
@@ -114,7 +116,7 @@ public class Person {
     public Boolean validateName(String data) {
 
         Boolean result = true;
-        if ( data == null || data.trim().length() > 0 ) {
+        if ( data == null || data.trim().length() == 0 ) {
             throw new IllegalArgumentException("data ( Name ) cannot be null or contain only spaces");
         }
 
@@ -126,7 +128,7 @@ public class Person {
      *
      * <b>When an instance is created then call this function directly after to validate the data. </b>
      *
-     * 1. Cannot be an empty string or null
+     * 1. Cannot be an empty string
      * 2. Must contain only 0-9 in string
      * 3. The number of character is nine only.
      *
@@ -139,7 +141,7 @@ public class Person {
 
         int SIZE_OF_NUMBER = 9;
 
-        if ( data == null || data.trim().length() == 0) {
+        if (  data.trim().length() == 0) {
             throw new IllegalArgumentException("data ( Identification )variable cannot be empty or null");
         }
 
