@@ -4,15 +4,24 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.net.IDN;
+import java.util.HashMap;
+import java.util.Map;
 
 @ToString
 @EqualsAndHashCode
-
 /**
  * Describes a person
  */
 public class Person {
+
+    /**
+     * This enumeration describes attributes of the person, such as hair, eye color an more
+     */
+    public enum Attributes_Key {
+        AGE_KEY,
+        HAIR_COLOR_KEY,
+        EYE_COLOR_KEY
+    }
 
     /**
      * The enumeration describes the type of identification.  A citizen will have
@@ -69,13 +78,19 @@ public class Person {
      * Is the person a citizen or a foreigner
      */
     @Getter
-    boolean isCitizen;
+    private boolean isCitizen;
 
     /**
      * Is the person illegally in the United States
      */
     @Getter
-    boolean isLegal;
+    private boolean isLegal;
+
+    /**
+     * A set of physical attributes
+     */
+    private Map<Attributes_Key, String> physicalAttributes;
+
 
     /**
      * Creates an instance of an Person that is not a citizen
@@ -101,20 +116,45 @@ public class Person {
         this.identificationType = type;
         this.specificId = IdentificationId;
 
-        if ( type == IdentificationType.AlienRegistration) {
-            isLegal = true;
-            isCitizen = false;
-        }
+        isLegal = true;
+        isCitizen = ( type == IdentificationType.AlienRegistration ) ? false : true;
     }
 
     /**
      * Initializes the class to avoid an exception being called in a constructor.  Call this class after creating the constructor
      *
-     * @exceptino IllegalArgumentException      The data was not valid
+     * @exception IllegalArgumentException      The data was not valid
      */
     public void initialize() throws IllegalArgumentException {
         validateName(this.getName());
         if ( identificationType != null ) validateIdentification(getSpecificId());
+    }
+
+    /**
+     * Allows the developer to add physical attributes about the person
+     *
+     * @exception IllegalArgumentException The value is null or blank
+     *
+     * @param key           The key used to find the value
+     * @param value         The value
+     */
+    public void addAttributed(Attributes_Key key, String value) {
+
+        if ( physicalAttributes == null ) {
+            physicalAttributes = new HashMap<>();
+        }
+
+        if ( value == null || value.trim().length() == 0) {
+            throw new IllegalArgumentException("Cannot insert a value that is null or made up of spaces ");
+        }
+
+        physicalAttributes.put(key, value);
+
+    }
+
+    public String getAttribute(Attributes_Key key) {
+        String value =  physicalAttributes.getOrDefault(key, "None");
+        return value;
     }
 
     /**

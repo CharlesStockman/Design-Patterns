@@ -76,7 +76,7 @@ public class FactoryTest {
         Assertions.assertEquals(person.getName(), name);
         Assertions.assertEquals(idType, person.getIdentificationType());
         Assertions.assertEquals(specificId, person.getSpecificId());
-        Assertions.assertFalse(person.isCitizen());
+        Assertions.assertTrue(person.isCitizen());
         Assertions.assertTrue(person.isLegal());
     }
 

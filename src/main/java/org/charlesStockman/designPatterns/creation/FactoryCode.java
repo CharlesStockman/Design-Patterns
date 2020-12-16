@@ -34,6 +34,18 @@ public class FactoryCode {
         return person;
     }
 
-
-
+    /**
+     * Creates a citizen
+     *
+     * @param name              The name of the Person
+     * @param idType            The Type of the Id ( ex. Social Security )
+     * @param specificId        The specific for the person.
+     *
+     * @throws IllegalArgumentException if the name or specific id is not valid.
+     */
+    public static Person createCitizen(String name, Person.IdentificationType idType, String specificId ) {
+        Person person = new Person(name, idType, specificId);
+        person.initialize();
+        return person;
+    }
 }
