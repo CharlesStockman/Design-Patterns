@@ -121,6 +121,34 @@ public class Person {
     }
 
     /**
+     * Creates a copy of the current instance.
+     *
+     * Copy constructor seem better than the clone
+     *  1. Copy constructor is much easier to implement. ( No. Cloneable and CloneNotSupportedException )
+     *  2. Clone returns an Object not the specific type
+     *  3. Cannot assign a value to a final field.
+     *
+     *  Considered a Deep copy since the physicalAttributes is being copied.
+     *
+     *  Problem with copy constructor is that copy constructors are not inheritable and will face a casting
+     *  issue.  One way to fix this is to create an copy() that returns a Convariant return type ( wide to
+     *  narrower ).  I wonder if a parent/child class coold be create where the convariant type
+     */
+    public Person(Person originalPerson ) {
+        this.name = originalPerson.name;
+        this.identificationType = originalPerson.identificationType;
+        this.specificId = originalPerson.specificId;
+        this.isCitizen = originalPerson.isCitizen;
+        this.isLegal = originalPerson.isLegal;
+
+        physicalAttributes = null;
+        physicalAttributes = new HashMap<Attributes_Key, String>();
+        for ( Map.Entry<Attributes_Key, String> entry : originalPerson.physicalAttributes.entrySet() ) {
+            physicalAttributes.put(entry.getKey(), entry.getValue());
+        }
+    }
+
+    /**
      * Initializes the class to avoid an exception being called in a constructor.  Call this class after creating the constructor
      *
      * @exception IllegalArgumentException      The data was not valid
@@ -170,6 +198,7 @@ public class Person {
         return result;
 
     }
+
     /**
      * Verify that the identification value enter is legal.
      *

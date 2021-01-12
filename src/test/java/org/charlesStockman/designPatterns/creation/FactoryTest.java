@@ -46,7 +46,7 @@ public class FactoryTest {
         Person.IdentificationType idType    = Person.IdentificationType.AlienRegistration;
         String specificId                   = "123456789";
 
-        Person person = FactoryCode.createLegalAlien(name, idType, specificId);
+        Person person = FactoryCode.createLegalAlien(name, specificId);
 
         Assertions.assertNotNull(person);
         Assertions.assertEquals(person.getName(), name);
@@ -68,7 +68,7 @@ public class FactoryTest {
         Person.IdentificationType idType    = Person.IdentificationType.SocialSecurity;
         String specificId                   = "123456789";
 
-        Person person = FactoryCode.createLegalAlien(name, idType, specificId);
+        Person person = FactoryCode.createCitizen(name, specificId);
 
         Assertions.assertNotNull(person);
         Assertions.assertEquals(person.getName(), name);

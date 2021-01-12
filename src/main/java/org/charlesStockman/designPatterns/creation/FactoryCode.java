@@ -23,13 +23,12 @@ public class FactoryCode {
      * Creates an Legal Alien
      *
      * @param name              The name of the Person
-     * @param idType            The Type of the Id ( ex. Social Security )
      * @param specificId        The specific for the person.
      *
      * @throws IllegalArgumentException if the name or specific id is not valid.
      */
-    public static Person createLegalAlien(String name, Person.IdentificationType idType, String specificId ) {
-        Person person = new Person(name, idType, specificId);
+    public static Person createLegalAlien(String name, String specificId ) {
+        Person person = new Person(name, Person.IdentificationType.AlienRegistration, specificId);
         person.initialize();
         return person;
     }
@@ -38,13 +37,12 @@ public class FactoryCode {
      * Creates a citizen
      *
      * @param name              The name of the Person
-     * @param idType            The Type of the Id ( ex. Social Security )
      * @param specificId        The specific for the person.
      *
      * @throws IllegalArgumentException if the name or specific id is not valid.
      */
-    public static Person createCitizen(String name, Person.IdentificationType idType, String specificId ) {
-        Person person = new Person(name, idType, specificId);
+    public static Person createCitizen(String name, String specificId ) {
+        Person person = new Person(name, Person.IdentificationType.SocialSecurity, specificId);
         person.initialize();
         return person;
     }
