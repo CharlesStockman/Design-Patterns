@@ -1,6 +1,5 @@
 package org.charlesStockman.designPatterns.creation;
 
-import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -39,7 +38,7 @@ public class BuilderTest {
     public void AdapterTestCreationClassWithClassName() {
         String answer = String.format("public class %s { }", className) ;
         BuilderCode builderCode = new BuilderCode(className);
-        Assert.assertEquals(answer, builderCode.build());
+        Assertions.assertEquals(answer, builderCode.build());
     }
 
     /**
@@ -47,10 +46,9 @@ public class BuilderTest {
      */
     @Test
     public void AdapterTestCreationWithClassNameNull() {
-        className = null;
-        BuilderCode builderCode = new BuilderCode(className);
+        BuilderCode builderCode = new BuilderCode(null);
 
-        Assertions.assertThrows(IllegalArgumentException.class, () -> builderCode.build());
+        Assertions.assertThrows(IllegalArgumentException.class, builderCode::build);
 
     }
 
@@ -62,7 +60,7 @@ public class BuilderTest {
         className = "   ";
         BuilderCode builderCode = new BuilderCode(className);
 
-        Assertions.assertThrows(IllegalArgumentException.class, () -> builderCode.build());
+        Assertions.assertThrows(IllegalArgumentException.class, builderCode::build);
 
     }
 
@@ -80,8 +78,8 @@ public class BuilderTest {
         builderCode.addField(variable1Type, variable1Name);
 
         String result = builderCode.build();
-        Assert.assertEquals(answer, result);
-        Assert.assertTrue(result.contains(variable1Name));
+        Assertions.assertEquals(answer, result);
+        Assertions.assertTrue(result.contains(variable1Name));
     }
 
     /**
@@ -89,11 +87,10 @@ public class BuilderTest {
      */
     @Test
     public void AdapterBuildFieldWithClassFieldTypeNull() {
-        variable1Type = null;
         BuilderCode builderCode = new BuilderCode(className);
-        builderCode.addField(variable1Type, variable1Name);
+        builderCode.addField(null, variable1Name);
 
-        Assertions.assertThrows(IllegalArgumentException.class, () -> builderCode.build());
+        Assertions.assertThrows(IllegalArgumentException.class, builderCode::build);
     }
 
     /**
@@ -101,11 +98,10 @@ public class BuilderTest {
      */
     @Test
     public void AdapterBuildFieldWithClassFieldNameNull() {
-        variable1Name = null;
         BuilderCode builderCode = new BuilderCode(className);
-        builderCode.addField(variable1Type, variable1Name);
+        builderCode.addField(variable1Type, null);
 
-        Assertions.assertThrows(IllegalArgumentException.class, () -> builderCode.build());
+        Assertions.assertThrows(IllegalArgumentException.class, builderCode::build);
     }
 
     /**
@@ -117,7 +113,7 @@ public class BuilderTest {
         BuilderCode builderCode = new BuilderCode(className);
         builderCode.addField(variable1Type, variable1Name);
 
-        Assertions.assertThrows(IllegalArgumentException.class, () -> builderCode.build());
+        Assertions.assertThrows(IllegalArgumentException.class, builderCode::build);
     }
 
     /**
@@ -129,7 +125,7 @@ public class BuilderTest {
         BuilderCode builderCode = new BuilderCode(className);
         builderCode.addField(variable1Type, variable1Name);
 
-        Assertions.assertThrows(IllegalArgumentException.class, () -> builderCode.build());
+        Assertions.assertThrows(IllegalArgumentException.class, builderCode::build);
 
     }
 
@@ -147,6 +143,6 @@ public class BuilderTest {
         String answer = String.format("public class %s { private %s %s; private %s %s; }",
                 className, variable1Type, variable1Name, variable2Type, variable2Name) ;
         String result = new BuilderCode(className).addField(variable1Type, variable1Name).addField(variable2Type, variable2Name).build();
-        Assert.assertEquals(result, answer);
+        Assertions.assertEquals(result, answer);
     }
 }

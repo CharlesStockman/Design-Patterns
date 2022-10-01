@@ -1,11 +1,13 @@
-package org.charlesStockman.designPatterns.creation.other;
+package org.charlesStockman.designPatterns.creation;
 
 import lombok.Getter;
+import org.charlesStockman.designPatterns.creation.other.RectangleInterface;
+import org.charlesStockman.designPatterns.creation.other.Square;
 
 /**
  * Convert a give square to a rectangle
  */
-public class SquareToRectangleAdapter implements RectangleInterface{
+public class SquareToRectangleAdapter implements RectangleInterface {
 
     @Getter
     // The width of the rectangle

@@ -2,12 +2,9 @@ package org.charlesStockman.designPatterns.creation;
 
 import org.charlesStockman.designPatterns.creation.other.RectangleInterface;
 import org.charlesStockman.designPatterns.creation.other.Square;
-import org.charlesStockman.designPatterns.creation.other.SquareToRectangleAdapter;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-
-import java.util.concurrent.atomic.AtomicReference;
 
 public class AdapterTest {
 
